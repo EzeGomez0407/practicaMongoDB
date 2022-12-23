@@ -13,4 +13,15 @@ router.get("/", async (req, res) => {
   }
 });
 
+router.get("/:id", async (req, res) => {
+  const { id } = req.params;
+  try {
+    const pet = await Pet.findById(id);
+    return res.send(pet);
+  } catch (error) {
+    console.log(error.message);
+    return res.send(error.message);
+  }
+});
+
 module.exports = router;
