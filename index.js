@@ -1,10 +1,15 @@
 require("dotenv").config();
 const mongoose = require("mongoose");
 const conn = require("./app");
-const { PORT, MONGO_URL } = process.env;
-// const uri = `mongodb+srv://${USER}:${password}@cluster0.1sswsn6.mongodb.net/${dbName}?retryWrites=true&w=majority`;
-const uri = MONGO_URL;
+// const { PORT, MONGO_URL } = process.env;
+// const uri = MONGO_URL;
 
+//VARIABLES DE ENTORNO SOLO PARA DESARROLLO//////
+
+const { PORT, MONGOPASSWORD, MONGOHOST, MONGOPORT, MONGOUSER } = process.env;
+const uri = `mongodb://${MONGOUSER}:${MONGOPASSWORD}@${MONGOHOST}:${MONGOPORT}`;
+
+// ////////////////////////////////////////////////////////
 mongoose.set("strictQuery", true);
 mongoose
   .connect(uri, { useNewUrlParser: true, useUnifiedTopology: true })

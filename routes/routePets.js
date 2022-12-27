@@ -24,4 +24,19 @@ router.get("/:id", async (req, res) => {
   }
 });
 
+router.post("/new-pet", async (req, res) => {
+  const { name, age, temperament, type } = req.body;
+  try {
+    if (!name && !age && !type)
+      return new Error(
+        "no se proporcionaron todos los datos para la creacion de una mascota"
+      );
+    const newPet = await Pet.create({ name, age, temperament, type });
+    res.send(newPet);
+  } catch (error) {
+    console.log(error.message);
+    res.send(error.message);
+  }
+});
+
 module.exports = router;
