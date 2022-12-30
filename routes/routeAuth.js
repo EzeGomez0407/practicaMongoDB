@@ -1,5 +1,6 @@
 const { Router } = require("express");
 const Joi = require("joi");
+const jwt = require("jsonwebtoken");
 const bcrypt = require("bcrypt");
 const User = require("../database/models/User");
 
@@ -63,7 +64,18 @@ router.post("/login", async (req, res) => {
     if (!passwordValidate)
       return res.status(400).json("Credenciales no validas");
 
-    return res.json("Exito");
+    const token = jwt.sign(
+      {
+        name: user.name,
+        id: user._id,
+      },
+      process.env.TOKEN_SECRET
+    );
+
+    res.header("auth-token", token).json({
+      error: null,
+      data: { token },
+    });
   } catch (error) {
     return res.status(400).json("Este error viene del catch: " + error.message);
   }
