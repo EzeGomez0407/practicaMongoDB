@@ -45,7 +45,7 @@ router.post("/register", async (req, res) => {
       data: savedUser,
     });
   } catch (error) {
-    return res.status(400).json("Este error viene del catch: " + error.message);
+    return res.status(400).json(error.message);
   }
 });
 
