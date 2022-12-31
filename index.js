@@ -1,4 +1,3 @@
-require("dotenv").config();
 const mongoose = require("mongoose");
 const conn = require("./app");
 // const { PORT, MONGO_URL } = process.env;

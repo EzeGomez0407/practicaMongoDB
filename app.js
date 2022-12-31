@@ -6,6 +6,7 @@ const routePets = require("./routes/routeGetPets");
 const routeAuth = require("./routes/routeAuth");
 const routeAddPet = require("./routes/routesSecure/routeAddPet");
 const verifyAuth = require("./midleware/mw-jwt");
+require("dotenv").config();
 
 app.use(cors());
 
