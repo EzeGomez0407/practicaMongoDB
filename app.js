@@ -7,8 +7,11 @@ const routeAuth = require("./routes/routeAuth");
 const routeAddPet = require("./routes/routesSecure/routeAddPet");
 const verifyAuth = require("./midleware/mw-jwt");
 require("dotenv").config();
-
-app.use(cors());
+const corsConfig = {
+  origin: "*",
+  optionsSuccessStatus: 200,
+};
+app.use(cors(corsConfig));
 
 // parse application/x-www-form-urlencoded
 app.use(bodyParser.urlencoded({ extended: false }));
